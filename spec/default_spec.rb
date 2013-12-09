@@ -16,4 +16,15 @@ describe 'ingenerator-base::default' do
     chef_run.should stop_service('chef-client')
   end
 
+  context "with default attributes" do
+    it "defines a project name attribute" do
+      chef_run.node['project']['name'].should eq('newproject')
+    end
+
+    it "defines a project contact email" do
+      chef_run.node['project']['contact'].should eq('hello@ingenerator.com')
+    end
+
+  end
+
 end
