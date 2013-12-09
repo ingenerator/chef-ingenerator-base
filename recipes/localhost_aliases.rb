@@ -1,9 +1,10 @@
 #
-# Basic and common instance provisioning
+# Adds one or more domain names as aliases for 127.0.0.1 in the hosts file -
+# particularly used for allowing build servers to resolve names like 'project.dev'
 #
 # Author::  Andrew Coulton (<andrew@ingenerator.com>)
 # Cookbook Name:: ingenerator-base
-# Recipe:: default
+# Recipe:: localhost_aliases
 #
 # Copyright 2012-13, inGenerator Ltd
 #
@@ -20,12 +21,20 @@
 # limitations under the License.
 #
 
-# Note that the apt recipe *must* be first to ensure apt-get update is before any installs
-include_recipe "apt"
-include_recipe "ingenerator-base::base_packages"
-include_recipe "ingenerator-base::localhost_aliases"
+active_hosts = []
+node['base']['localhost_aliases'].each do |hostname, alias_active|
+  active_hosts << hostname if alias_active
+end
 
-# The default chef package installer (on remote hosts) installs the chef-client service - remove it.
-service "chef-client" do
-  action [:disable,:stop]
+if active_hosts.empty?
+  hostsfile_entry "127.0.0.1" do
+    action   :remove
+  end
+else
+  hostsfile_entry "127.0.0.1" do
+    hostname active_hosts.shift
+    aliases  active_hosts
+    action   :create
+    comment  'Added by ingenerator-base::localhost_aliases recipe by chef'
+  end
 end

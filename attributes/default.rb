@@ -23,3 +23,6 @@
 # true/false to configure whether it should be installed.
 default['base']['packages']['git'] = true
 
+# Hostnames that should be mapped to localhost via /etc/hosts - see the localhost_aliases recipe
+# Provide a hash of hostname => active - true/false
+default['base']['localhost_aliases'] = {}
