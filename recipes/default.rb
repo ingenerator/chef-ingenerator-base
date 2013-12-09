@@ -20,4 +20,6 @@
 # limitations under the License.
 #
 
+# Note that the apt recipe *must* be first to ensure apt-get update is before any installs
+include_recipe "apt"
 include_recipe "ingenerator-base::base_packages"
