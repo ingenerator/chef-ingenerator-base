@@ -35,6 +35,7 @@ The `ingenerator-base::default` recipe will:
 * run the "apt::default" recipe to ensure all apt sources are up to date
 * install any of the enabled packages from the node['base']['packages'] hash - by default this includes git
 * disable and stop the "chef-client" service - we manually run chef-solo when required
+* set the system timezone to UTC
 
 Attributes
 ----------

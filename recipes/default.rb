@@ -24,6 +24,7 @@
 include_recipe "apt"
 include_recipe "ingenerator-base::base_packages"
 include_recipe "ingenerator-base::localhost_aliases"
+include_recipe "timezone-ii::default"
 
 # The default chef package installer (on remote hosts) installs the chef-client service - remove it.
 service "chef-client" do
