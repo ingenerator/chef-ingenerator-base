@@ -1,11 +1,11 @@
 #
-# Basic and common instance provisioning
+# Creates a swap file
 #
 # Author::  Andrew Coulton (<andrew@ingenerator.com>)
 # Cookbook Name:: ingenerator-base
-# Recipe:: default
+# Recipe:: swap
 #
-# Copyright 2012-13, inGenerator Ltd
+# Copyright 2013-14, inGenerator Ltd
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,14 +20,9 @@
 # limitations under the License.
 #
 
-# Note that the apt recipe *must* be first to ensure apt-get update is before any installs
-include_recipe "apt"
-include_recipe "ingenerator-base::base_packages"
-include_recipe "ingenerator-base::localhost_aliases"
-include_recipe "timezone-ii::default"
-include_recipe "ingenerator-base::swap"
-
-# The default chef package installer (on remote hosts) installs the chef-client service - remove it.
-service "chef-client" do
-  action [:disable,:stop]
+swap_file node['swap']['path'] do
+  action  :create
+  size    node['swap']['size']
+  persist node['swap']['persist'] 
 end
+

@@ -26,3 +26,9 @@ default['base']['packages']['git'] = true
 # Hostnames that should be mapped to localhost via /etc/hosts - see the localhost_aliases recipe
 # Provide a hash of hostname => active - true/false
 default['base']['localhost_aliases'] = {}
+
+
+# Configuration for swap file size and paths
+default['swap']['path']    = '/mnt/swap'
+default['swap']['size']    = 1024 # Mb
+default['swap']['persist'] = true

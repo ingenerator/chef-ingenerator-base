@@ -12,4 +12,5 @@ end
 
 depends "apt"
 depends "hostsfile"
+depends "swap"
 depends "timezone-ii"

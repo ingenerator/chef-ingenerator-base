@@ -24,6 +24,10 @@ describe 'ingenerator-base::default' do
     chef_run.node['tz'].should eq('UTC')
     chef_run.should include_recipe('timezone-ii::default')
   end
+  
+  it "includes the swap recipe" do
+    chef_run.should include_recipe('ingenerator-base::swap')
+  end
 
   context "with default attributes" do
     it "defines a project name attribute" do
