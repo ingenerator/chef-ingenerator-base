@@ -21,7 +21,7 @@ describe 'ingenerator-base::default' do
   end
   
   it "sets the timezone to UTC" do
-    chef_run.node['tz'].should eq('UTC')
+    chef_run.node['tz'].should eq('Etc/UTC')
     chef_run.should include_recipe('timezone-ii::default')
   end
   
