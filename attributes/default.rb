@@ -22,6 +22,7 @@
 # simple binaries that require no configuration by chef. Package name is the hash key,
 # true/false to configure whether it should be installed.
 default['base']['packages']['git'] = true
+default['base']['packages']['ntp'] = true
 
 # Hostnames that should be mapped to localhost via /etc/hosts - see the localhost_aliases recipe
 # Provide a hash of hostname => active - true/false
