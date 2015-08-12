@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'ingenerator-base::base_packages' do
-  let (:chef_run) { ChefSpec::Runner.new.converge described_recipe }
+  let (:chef_run) { ChefSpec::SoloRunner.new.converge described_recipe }
 
   context 'with packages configured' do
     it "installs each package" do
@@ -14,7 +14,7 @@ describe 'ingenerator-base::base_packages' do
 
   context 'with some packages disabled' do
     let (:chef_run) do
-      ChefSpec::Runner.new do |node|
+      ChefSpec::SoloRunner.new do |node|
         node.set['base']['packages'] = {
           'active'   => true,
           'inactive' => false

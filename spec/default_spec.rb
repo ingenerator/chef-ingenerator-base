@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'ingenerator-base::default' do
-  let (:chef_run) { ChefSpec::Runner.new(platform: 'ubuntu', version: '12.04').converge described_recipe }
+  let (:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04').converge described_recipe }
 
   it "runs apt recipe to ensure all apt sources are up to date" do
     chef_run.should include_recipe('apt::default')
