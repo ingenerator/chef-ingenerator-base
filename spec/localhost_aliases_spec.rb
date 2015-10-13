@@ -4,6 +4,7 @@ describe 'ingenerator-base::localhost_aliases' do
   context "with empty aliases hash" do
     let (:chef_run) do
       ChefSpec::SoloRunner.new do |node|
+        node.default['base']['localhost_aliases'] = {}
         node.set['base']['localhost_aliases'] = {}
       end.converge(described_recipe)
     end
@@ -20,6 +21,7 @@ describe 'ingenerator-base::localhost_aliases' do
   context "with a single alias" do
     let (:chef_run) do
       ChefSpec::SoloRunner.new do |node|
+        node.default['base']['localhost_aliases'] = {}
         node.set['base']['localhost_aliases'] = {'project.dev' => true}
       end.converge(described_recipe)
     end
@@ -40,6 +42,7 @@ describe 'ingenerator-base::localhost_aliases' do
   context "with multiple aliases" do
     let (:chef_run) do
       ChefSpec::SoloRunner.new do |node|
+        node.default['base']['localhost_aliases'] = {}
         node.set['base']['localhost_aliases'] = {'project.dev' => true, 'cdn.project.dev' => true, 'api.project.dev' => true}
       end.converge(described_recipe)
     end
@@ -61,6 +64,7 @@ describe 'ingenerator-base::localhost_aliases' do
   context "with multiple aliases where one is disabled" do
     let (:chef_run) do
       ChefSpec::SoloRunner.new do |node|
+        node.default['base']['localhost_aliases'] = {}
         node.set['base']['localhost_aliases'] = {'project.dev' => false, 'cdn.project.dev' => true, 'api.project.dev' => true}
       end.converge(described_recipe)
     end
@@ -81,6 +85,7 @@ describe 'ingenerator-base::localhost_aliases' do
   context "with multiple aliases where all are disabled" do
     let (:chef_run) do
       ChefSpec::SoloRunner.new do |node|
+        node.default['base']['localhost_aliases'] = {}
         node.set['base']['localhost_aliases'] = {
           'project.dev'     => false,
           'cdn.project.dev' => false
