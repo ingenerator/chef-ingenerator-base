@@ -99,8 +99,10 @@ describe 'ingenerator-base::localhost_aliases' do
 
   context "by default" do
     let (:chef_run) { ChefSpec::SoloRunner.new.converge described_recipe }
-    it "creates no hostsfiles entries" do
-      chef_run.should_not create_hostsfile_entry('127.0.0.1')
+    it "creates a hostsfile entry for localhost" do
+      chef_run.should create_hostsfile_entry('127.0.0.1').with(
+        hostname: 'localhost'
+      )
     end
   end
 end
