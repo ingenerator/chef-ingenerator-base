@@ -5,17 +5,17 @@ describe 'ingenerator-base::base_packages' do
 
   context 'with packages configured' do
     it "installs each package" do
-      chef_run.node.set['base']['packages'] = { 'pckg1' => true, 'pckg2' => true }
+      chef_run.node.normal['base']['packages'] = { 'pckg1' => true, 'pckg2' => true }
       chef_run.converge(described_recipe)
-      chef_run.should install_package('pckg1')
-      chef_run.should install_package('pckg2')
+      expect(chef_run).to install_package('pckg1')
+      expect(chef_run).to install_package('pckg2')
     end
   end
 
   context 'with some packages disabled' do
     let (:chef_run) do
       ChefSpec::SoloRunner.new do |node|
-        node.set['base']['packages'] = {
+        node.normal['base']['packages'] = {
           'active'   => true,
           'inactive' => false
         }
@@ -23,17 +23,17 @@ describe 'ingenerator-base::base_packages' do
     end
 
     it "installs the enabled package" do
-      chef_run.should install_package('active')
+      expect(chef_run).to install_package('active')
     end
 
     it "does not install the disabled package" do
-      chef_run.should_not install_package('inactive')
+      expect(chef_run).not_to install_package('inactive')
     end
   end
 
   context 'by default' do
     it "installs git" do
-      chef_run.should install_package('git')
+      expect(chef_run).to install_package('git')
     end
   end
 
