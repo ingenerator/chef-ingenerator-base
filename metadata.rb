@@ -5,6 +5,8 @@ license 'Apache 2.0'
 description 'Basic, common, provisioning of all our instances'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version '0.1.0'
+issues_url 'https://github.com/ingenerator/chef-ingenerator-base/issues'
+source_url 'https://github.com/ingenerator/chef-ingenerator-base'
 
 %w(ubuntu).each do |os|
   supports os
