@@ -8,8 +8,8 @@ regularly-used recipes etc that do not merit their own cookbooks.
 
 Requirements
 ------------
-- Chef 11 or higher
-- **Ruby 1.9.3 or higher**
+- Chef 12.13 or higher
+- **Ruby 2.3 or higher**
 
 Installation
 ------------
