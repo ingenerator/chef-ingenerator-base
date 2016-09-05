@@ -1,7 +1,11 @@
 require 'spec_helper'
 
 describe 'ingenerator-base::default' do
-  let (:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04').converge described_recipe }
+  let (:chef_run) do
+     ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04') do | node |
+        node.normal['ssh']['host_port'] = 22
+     end.converge described_recipe
+  end
 
   it "runs apt recipe to ensure all apt sources are up to date" do
     expect(chef_run).to include_recipe('apt::default')
@@ -27,6 +31,10 @@ describe 'ingenerator-base::default' do
   
   it "includes the swap recipe" do
     expect(chef_run).to include_recipe('ingenerator-base::swap')
+  end
+
+  it 'includes the ssh_host recipe' do
+    expect(chef_run).to include_recipe('ingenerator-base::ssh_host')
   end
 
   context "with default attributes" do

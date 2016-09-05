@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+* [BREAKING FEATURE] Provision standard SSH and require each project to specify a custom host
+  port for SSH connections (in node['ssh']['host'])
+
 ## 0.1.0 (2016-09-06)
 
 * First tagged release
