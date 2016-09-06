@@ -2,13 +2,7 @@
 # The configuration template should be as simple as possible for security and to minimise
 # any risk of losing access to a server through a misplaced attribute or recipe change
 
-unless (node['ssh'] && node['ssh']['host_port'])
-  raise ArgumentError.new('You must configure an SSH host port in node[\'ssh\'][\'host_port\']')
-end
-
-unless node['ssh']['host_port'].is_a? Integer
-  raise ArgumentError.new('The SSH port configured in node[\'ssh\'][\'host_port\'] must be an integer')
-end
+ssh_port = custom_ssh_port
 
 template '/etc/ssh/sshd_config' do
   action :create
@@ -16,7 +10,7 @@ template '/etc/ssh/sshd_config' do
   group  'root'
   mode   0644
   variables({
-    :host_port => node['ssh']['host_port'],
+    :host_port => ssh_port,
   })
   notifies :restart, 'service[ssh]'
 end

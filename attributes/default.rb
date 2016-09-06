@@ -33,3 +33,18 @@ default['base']['localhost_aliases']['localhost'] = true
 default['swap']['path']    = '/mnt/swap'
 default['swap']['size']    = 1024 # Mb
 default['swap']['persist'] = true
+
+# Configuration for SSH
+# You MUST define a value for this in the application cookbook, otherwise provisioning will fail with
+# an exception. The value is always read with the custom_ssh_port helper to ensure it is always validated.
+# Note that build slaves and vagrant boxes will always use port 22 regardless of the configuration here
+default['ssh']['host_port'] = nil
+
+# Default ingenerator attributes
+
+# Controls default behaviour of most of the ingenerator recipes where we have consistent
+# dev / build / production behaviour. Use :localdev, :buildslave or :production in project-level
+# role attributes. Usually, recipes that respect this attribute should then default some other
+# attribute to disable/enable specific behaviour so that this can then be overridden on a case-by-base
+# basis.
+default['ingenerator']['node_environment'] = :production

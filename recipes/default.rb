@@ -29,6 +29,7 @@ include_recipe "ingenerator-base::swap"
 
 # This will raise an exception if no ssh port has been configured
 include_recipe 'ingenerator-base::ssh_host'
+include_recipe 'ingenerator-base::firewall'
 
 # The default chef package installer (on remote hosts) installs the chef-client service - remove it.
 service "chef-client" do

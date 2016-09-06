@@ -37,6 +37,10 @@ describe 'ingenerator-base::default' do
     expect(chef_run).to include_recipe('ingenerator-base::ssh_host')
   end
 
+  it 'includes the default firewall recipe' do
+    expect(chef_run).to include_recipe('ingenerator-base::firewall')
+  end
+
   context "with default attributes" do
     it "defines a project name attribute" do
       expect(chef_run.node['project']['name']).to eq('newproject')
@@ -46,6 +50,9 @@ describe 'ingenerator-base::default' do
       expect(chef_run.node['project']['contact']).to eq('hello@ingenerator.com')
     end
 
+    it 'defaults the node environment to be production' do
+      expect(chef_run.node['ingenerator']['node_environment']).to eq(:production)
+    end
   end
 
 end

@@ -13,6 +13,7 @@ source_url 'https://github.com/ingenerator/chef-ingenerator-base'
 end
 
 depends "apt"
+depends 'firewall', '~>2.5'
 depends "hostsfile"
 depends "swap"
 depends "timezone-ii"
