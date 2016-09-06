@@ -13,7 +13,26 @@ module Ingenerator
           raise ArgumentError.new('The SSH port configured in node[\'ssh\'][\'host_port\'] must be an integer')
         end
 
-        node['ssh']['host_port']
+
+        if is_environment?(:localdev) || is_environment?(:buildslave)
+          22
+        else
+          node['ssh']['host_port']
+        end
+      end
+
+      # Test if this is the specified environment
+      def is_environment?(env)
+        node_environment === env
+      end
+
+      # Get the current node environment
+      def node_environment
+        if node['ingenerator'] && node['ingenerator']['node_environment']
+          node['ingenerator']['node_environment']
+        else
+          :production
+        end
       end
     end
   end

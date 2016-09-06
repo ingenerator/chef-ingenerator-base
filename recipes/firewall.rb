@@ -18,7 +18,7 @@
 # to false and this whole recipe will be skipped.
 
 # Default not to install the firewall on local dev boxes
-if (node['ingenerator']['node_environment'] == :localdev)
+if is_environment?(:localdev)
   node.normal['ingenerator']['default_firewall']['do_provision'] = false
 end
 
