@@ -3,8 +3,12 @@ require 'spec_helper'
 describe 'ingenerator-base::default' do
   let (:chef_run) do
      ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04') do | node |
-        node.normal['ssh']['host_port'] = 22
      end.converge described_recipe
+  end
+
+  before(:example) do
+    # Mock the custom ssh port helper
+    allow_any_instance_of(Chef::Recipe).to receive(:custom_ssh_port).and_return(2200)
   end
 
   it "runs apt recipe to ensure all apt sources are up to date" do
