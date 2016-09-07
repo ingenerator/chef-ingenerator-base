@@ -11,6 +11,47 @@ Requirements
 - Chef 12.13 or higher
 - **Ruby 2.3 or higher**
 
+Node environment
+----------------
+There are various places where configuration of an instance or a particular service depends on the
+environment - broadly defined as a local development box (eg Vagrant), a remote build slave, or a
+production server.
+
+Although chef supports a fully-featured `environment` layer as well as `roles`, these are quite
+heavyweight and involve repeating attribute overrides across projects in a way that has proved
+tricky to maintain.
+
+By convention, we now use a single flag in the `node[ingenerator][node_environment]` attribute, which
+defaults to `:production` but should be overridden in the appropriate project-level role definition
+/ Vagrantfile.
+
+This flag can then be used at attribute / recipe level to control the default behaviour of a cookbook,
+so that the environment-specific variations are visible inline with the rest of the cookbook setup
+for easier tracing and debugging.
+
+Usually, you should not toggle behaviour directly on this flag, but use it to initialise well-named
+behaviour-specific attributes to a suitable value. This then allows further overriding of that logic
+at the project / role level.
+
+For example:
+
+```ruby
+# attributes/default.rb
+if node['ingenerator']['node_environment'] === :localdev
+  default['service']['do_thing'] = false
+else
+  default['service']['do_thing'] = true
+end
+
+# recipes/thing.rb
+if node['service']['do_thing']
+  thing_service do
+    action :install
+  end
+end
+```
+
+
 Installation
 ------------
 We recommend adding to your `Berksfile` and using [Berkshelf](http://berkshelf.com/):
@@ -26,6 +67,14 @@ Have your main project cookbook *depend* on ingenerator-base by editing the `met
 depends 'ingenerator-base'
 ```
 
+You must also specify a project-specific custom SSH port in the `node['ssh']['host_port']` attribute (eg
+in a project-config role). If you do not specify this attribute, provisioning will fail.
+
+You usually don't want to actually use the custom SSH port for build slaves or local development (vagrant)
+boxes as this complicates those setups. If you specify `node['ingenerator']['node_environment']` as either
+`:localdev` or `:buildslave`, the cookbook will still check that a valid host port has been configured,
+but will use port 22 rather than the specified port.
+
 Recipes
 -------
 
@@ -37,6 +86,8 @@ The `ingenerator-base::default` recipe will:
 * disable and stop the "chef-client" service - we manually run chef-solo when required
 * set the system timezone to UTC
 * creates a persistent 1G swap file
+* set the ssh port to a custom value (although always 22 on a build slave or local dev box)
+* install and configure a software firewall to block all but SSH, http and https (unless in `:localdev`)
 
 Attributes
 ----------
@@ -46,6 +97,14 @@ The cookbook provides and is controlled by a number of default attributes:
 * [default](attributes/default.rb) - attributes in the `base` group control operation of recipes in this cookbook
 * [project](attributes/project.rb) - provide central project configuration - you will generally extend and alter these
   in your roles or app cookbooks.
+  
+Helpers
+-------
+
+You can use these helpers from recipes in cookbooks that depend on ingenerator-base:
+
+* `node_environment` to get the node environment flag configured for this instance.
+* `is_environment?(env)` to check if the `node_environment` has been set to a given value.
 
 ### Testing
 See the [.travis.yml](.travis.yml) file for the current test scripts.
