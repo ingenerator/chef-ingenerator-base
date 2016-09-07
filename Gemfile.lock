@@ -69,6 +69,7 @@ GEM
       fuzzyurl
       mixlib-config (~> 2.0)
       mixlib-shellout (~> 2.0)
+    chef-sugar (3.4.0)
     chef-zero (4.9.0)
       ffi-yajl (~> 2.2)
       hashie (>= 2.0, < 4.0)
@@ -234,6 +235,7 @@ PLATFORMS
 
 DEPENDENCIES
   berkshelf (~> 5.0)
+  chef-sugar (~> 3.4)
   chefspec (~> 5.0)
   foodcritic (~> 6.0)
 
