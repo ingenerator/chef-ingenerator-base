@@ -15,5 +15,6 @@ end
 depends "apt"
 depends 'firewall', '~>2.5'
 depends "hostsfile"
+depends 'ingenerator-helpers', '~> 1.0'
 depends "swap"
 depends "timezone-ii"
