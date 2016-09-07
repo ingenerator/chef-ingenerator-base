@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+## 0.2.0 (2016-09-07)
+
 * [BREAKING FEATURE] Provision basic standard firewall configuration to allow only SSH,
   http and https by default.
 * [BREAKING FEATURE] Provision standard SSH and require each project to specify a custom host
