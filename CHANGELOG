@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+## 0.3.0 (2016-09-07)
+
+* Only build numerical release branches so travis doesn't build pull requests twice
+* Internal refactoring to extract environment helpers to shared `ingenerator-helpers` cookbook
+
 ## 0.2.0 (2016-09-07)
 
 * [BREAKING FEATURE] Provision basic standard firewall configuration to allow only SSH,
