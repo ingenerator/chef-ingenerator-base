@@ -26,6 +26,11 @@ module Ingenerator
         node_environment === env
       end
 
+      # Test if this is not the specified environment
+      def not_environment?(env)
+        node_environment != env
+      end
+
       # Get the current node environment
       def node_environment
         if node['ingenerator'] && node['ingenerator']['node_environment']
@@ -40,3 +45,4 @@ end
 
 # Make the helpers available in all recipes
 Chef::Recipe.send(:include, Ingenerator::Base::Helpers)
+Chef::Node.send(:include, Ingenerator::Base::Helpers)

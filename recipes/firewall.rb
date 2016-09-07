@@ -4,23 +4,14 @@
 # This is intentionally fairly limited in terms of customisation, to avoid risk
 # of messing things up with lots of attributes.
 #
-# By default, the firewall:
-#
-#  * is not provisioned if the node_environment = localdev (override this by forcing
-#    ingenerator.default_firewall.do_provision to true
-#  * allows http and https as well as ssh (disable these by setting either of
-#    ingenerator.default_firewall.enable_http(/s) to false
+# By default, the firewall allows http and https as well as ssh (disable these by setting
+# either of ingenerator.default_firewall.enable_http(/s) to false
 #
 # If you need to add additional rules, simply use a recipe in your application cookbook
 # to define further `firewall_rule` blocks.
 #
 # If you want to do your own thing entirely, override ingenerator.default_firewall.do_provision
 # to false and this whole recipe will be skipped.
-
-# Default not to install the firewall on local dev boxes
-if is_environment?(:localdev)
-  node.normal['ingenerator']['default_firewall']['do_provision'] = false
-end
 
 # Provision if required
 if node['ingenerator']['default_firewall']['do_provision']

@@ -70,5 +70,33 @@ describe Ingenerator::Base::Helpers do
     end
   end
 
+  describe 'is_environment?' do
+    before (:each) do
+      allow(my_recipe).to receive(:node).and_return({})
+    end
+
+    it 'is true if environment matches' do
+      expect(my_recipe.is_environment?(:production)).to be(true)
+    end
+
+    it 'is false if environment does not match' do
+      expect(my_recipe.is_environment?(:localdev)).to be(false)
+    end
+  end
+
+  describe 'not_environment?' do
+    before (:each) do
+      allow(my_recipe).to receive(:node).and_return({})
+    end
+
+    it 'is false if environment matches' do
+      expect(my_recipe.not_environment?(:production)).to be(false)
+    end
+
+    it 'is true if environment does not match' do
+      expect(my_recipe.not_environment?(:localdev)).to be(true)
+    end
+  end
+
 
 end
