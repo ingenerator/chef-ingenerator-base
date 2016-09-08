@@ -21,7 +21,4 @@
 # limitations under the License.
 #
 
-# Used for dev hostnames, www checkout paths, loggers, database schemas
-default['project']['name'] = 'newproject'
-
 default['project']['contact'] = 'hello@ingenerator.com'

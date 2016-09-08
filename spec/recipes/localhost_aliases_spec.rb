@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'ingenerator-base::localhost_aliases' do
-  
+
   context "by default" do
     let (:chef_run) { ChefSpec::SoloRunner.new.converge described_recipe }
     it "creates a hostsfile entry for localhost" do
@@ -55,15 +55,15 @@ describe 'ingenerator-base::localhost_aliases' do
       end.converge(described_recipe)
     end
 
-    it "appends the first alias to the hostsfile as hostname" do
+    it "appends the alphabetically first alias to the hostsfile as hostname" do
       expect(chef_run).to create_hostsfile_entry('127.0.0.1').with(
-        hostname: 'localhost'
+        hostname: 'api.project.dev'
       )
     end
 
-    it "appends subsequent aliases to the hostsfile as aliases" do
+    it "appends subsequent aliases to the hostsfile as aliases sorted to prevent unwanted changes" do
       expect(chef_run).to create_hostsfile_entry('127.0.0.1').with(
-        aliases: ['project.dev', 'cdn.project.dev', 'api.project.dev']
+        aliases: ['cdn.project.dev', 'localhost', 'project.dev']
       )
     end
 
@@ -78,13 +78,13 @@ describe 'ingenerator-base::localhost_aliases' do
 
     it "appends the first alias to the hostsfile as hostname" do
       expect(chef_run).to create_hostsfile_entry('127.0.0.1').with(
-        hostname: 'project.dev'
+        hostname: 'api.project.dev'
       )
     end
 
     it "appends subsequent aliases to the hostsfile as aliases" do
       expect(chef_run).to create_hostsfile_entry('127.0.0.1').with(
-        aliases: ['cdn.project.dev', 'api.project.dev']
+        aliases: ['cdn.project.dev', 'project.dev']
       )
     end
   end

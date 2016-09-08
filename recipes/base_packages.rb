@@ -21,7 +21,6 @@
 # limitations under the License.
 #
 
-node['base']['packages'].each do | package_name, should_install |
-  next unless should_install
+node['base']['packages'].list_active_keys.each do | package_name |
   package package_name
 end
