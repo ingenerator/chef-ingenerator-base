@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+## 0.4.0 (2016-09-08)
+
+* [BREAKING] don't define a default project name attribute, it has to be provided
+  by the application role
+* Refactor internally to use updated ingenerator-helpers
+
 ## 0.3.0 (2016-09-07)
 
 * Only build numerical release branches so travis doesn't build pull requests twice

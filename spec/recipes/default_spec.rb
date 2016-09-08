@@ -27,12 +27,12 @@ describe 'ingenerator-base::default' do
     expect(chef_run).to disable_service('chef-client')
     expect(chef_run).to stop_service('chef-client')
   end
-  
+
   it "sets the timezone to UTC" do
     expect(chef_run.node['tz']).to eq('Etc/UTC')
     expect(chef_run).to include_recipe('timezone-ii::default')
   end
-  
+
   it "includes the swap recipe" do
     expect(chef_run).to include_recipe('ingenerator-base::swap')
   end
@@ -46,10 +46,6 @@ describe 'ingenerator-base::default' do
   end
 
   context "with default attributes" do
-    it "defines a project name attribute" do
-      expect(chef_run.node['project']['name']).to eq('newproject')
-    end
-
     it "defines a project contact email" do
       expect(chef_run.node['project']['contact']).to eq('hello@ingenerator.com')
     end

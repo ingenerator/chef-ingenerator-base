@@ -21,10 +21,7 @@
 # limitations under the License.
 #
 
-active_hosts = []
-node['base']['localhost_aliases'].each do |hostname, alias_active|
-  active_hosts << hostname if alias_active
-end
+active_hosts = node['base']['localhost_aliases'].list_active_keys
 
 if active_hosts.empty?
   hostsfile_entry "127.0.0.1" do
