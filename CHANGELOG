@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+## 0.5.0 (2017-02-27)
+
 * Update default SSH configuration per Mozilla latest guidance.
 
 ## 0.4.0 (2016-09-08)
