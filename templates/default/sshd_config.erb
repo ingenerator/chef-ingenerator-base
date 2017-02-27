@@ -45,6 +45,14 @@ UseDNS no
 PrintMotd no
 TCPKeepAlive yes
 
+# If you just want the PAM account and session checks to run without
+# PAM authentication, then enable this but set PasswordAuthentication
+# and ChallengeResponseAuthentication to 'no'.
+# This is required to allow publickey authentication for passwordless users
+UsePAM yes
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+
 # Standard debian additions
 AcceptEnv LANG LC_*
 
