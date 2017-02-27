@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+* Update default SSH configuration per Mozilla latest guidance.
+
 ## 0.4.0 (2016-09-08)
 
 * [BREAKING] don't define a default project name attribute, it has to be provided
