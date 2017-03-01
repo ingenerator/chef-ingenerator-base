@@ -11,6 +11,9 @@ template '/etc/ssh/sshd_config' do
   mode   0644
   variables({
     :host_port => ssh_port,
+    # This is because of https://issues.jenkins-ci.org/browse/JENKINS-33021
+    # Jenkins does not support proper modern SSH options
+    :allow_insecure_ciphers => node.is_environment?(:buildslave)
   })
   notifies :restart, 'service[ssh]'
 end

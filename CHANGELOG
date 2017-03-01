@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+## 0.6.0 (2017-03-01)
+
+* Don't configure secure SSH ciphers on buildslaves - per the open issue at
+  https://issues.jenkins-ci.org/browse/JENKINS-33021 Jenkins uses an internal
+  SSH client with a very outdated list of supported MAC/KexAlgorithms
+
 ## 0.5.0 (2017-02-27)
 
 * Update default SSH configuration per Mozilla latest guidance.
