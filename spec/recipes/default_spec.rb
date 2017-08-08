@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'ingenerator-base::default' do
   let (:chef_run) do
-     ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04') do | node |
+     ChefSpec::SoloRunner.new do | node |
      end.converge described_recipe
   end
 
