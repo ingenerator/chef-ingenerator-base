@@ -13,9 +13,9 @@ source_url 'https://github.com/ingenerator/chef-ingenerator-base'
   supports os
 end
 
-depends "apt"
+depends 'apt', '>=6.0'
 depends 'firewall', '~>2.5'
-depends "hostsfile"
+depends 'hostsfile', '>=2.4'
 depends 'ingenerator-helpers', '~> 1.0'
-depends "swap"
-depends "timezone-ii"
+depends 'swap', '>=2.0'
+depends 'timezone-ii', '>=0.2'
