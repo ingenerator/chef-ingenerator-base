@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+* Update build dependencies and build against Chef 12 and Chef 13
+
 ## 0.6.0 (2017-03-01)
 
 * Don't configure secure SSH ciphers on buildslaves - per the open issue at

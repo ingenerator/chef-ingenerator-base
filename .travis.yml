@@ -4,6 +4,9 @@ cache:    bundler
 rvm:
   - 2.3.1
 sudo:     false
+gemfile:
+  - Gemfile
+  - gemfiles/chef-12/Gemfile
 script:
   - bundle exec foodcritic -f any . -X spec
   - bundle exec rspec --color --format documentation
