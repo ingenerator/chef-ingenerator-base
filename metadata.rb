@@ -1,7 +1,8 @@
 name 'ingenerator-base'
 maintainer 'Andrew Coulton'
 maintainer_email 'andrew@ingenerator.com'
-license 'Apache 2.0'
+license 'Apache-2.0'
+chef_version '>=12.18.31'
 description 'Basic, common, provisioning of all our instances'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version '0.6.0'
