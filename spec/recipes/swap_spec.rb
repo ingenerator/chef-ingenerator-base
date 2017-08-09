@@ -7,7 +7,7 @@ describe 'ingenerator-base::swap' do
   
   context "with custom configuration" do
     let (:chef_run) do
-      ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04') do | node |
+      ChefSpec::SoloRunner.new do | node |
         node.normal['swap']['path']    = swap_path
         node.normal['swap']['size']    = swap_size
         node.normal['swap']['persist'] = swap_persist
@@ -23,7 +23,7 @@ describe 'ingenerator-base::swap' do
   end
   
   context "by default" do
-    let (:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04').converge described_recipe }
+    let (:chef_run) { ChefSpec::SoloRunner.new.converge described_recipe }
     
     it "creates the file at /mnt/swap by default" do
       expect(chef_run.node['swap']['path']).to eq('/mnt/swap')
