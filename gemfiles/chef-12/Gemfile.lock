@@ -121,7 +121,7 @@ GEM
     mixlib-config (2.2.4)
     mixlib-log (1.7.1)
     mixlib-shellout (2.3.2)
-    molinillo (0.6.1)
+    molinillo (0.5.7)
     multi_json (1.12.1)
     multipart-post (2.0.0)
     net-scp (1.2.1)
@@ -237,6 +237,7 @@ DEPENDENCIES
   chef-sugar (~> 3.4)
   chefspec (~> 7.0)
   foodcritic (~> 11.0)
+  molinillo (< 0.6)
 
 BUNDLED WITH
    1.15.3
