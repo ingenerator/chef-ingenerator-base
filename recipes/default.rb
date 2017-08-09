@@ -20,11 +20,13 @@
 # limitations under the License.
 #
 
+raise_if_legacy_attributes('tz')
+
 # Note that the apt recipe *must* be first to ensure apt-get update is before any installs
 include_recipe "apt"
 include_recipe "ingenerator-base::base_packages"
 include_recipe "ingenerator-base::localhost_aliases"
-include_recipe "timezone-ii::default"
+include_recipe "timezone_iii::default"
 include_recipe "ingenerator-base::swap"
 
 # This will raise an exception if no ssh port has been configured

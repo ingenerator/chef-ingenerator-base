@@ -1,10 +1,8 @@
 require 'spec_helper'
 
 describe 'ingenerator-base::default' do
-  let (:chef_run) do
-     ChefSpec::SoloRunner.new do | node |
-     end.converge described_recipe
-  end
+  let (:chef_runner) { ChefSpec::SoloRunner.new }
+  let (:chef_run)    { chef_runner.converge(described_recipe) }
 
   before(:example) do
     # Mock the custom ssh port helper
@@ -29,8 +27,8 @@ describe 'ingenerator-base::default' do
   end
 
   it "sets the timezone to UTC" do
-    expect(chef_run.node['tz']).to eq('Etc/UTC')
-    expect(chef_run).to include_recipe('timezone-ii::default')
+    expect(chef_run.node['timezone_iii']['timezone']).to eq('Etc/UTC')
+    expect(chef_run).to include_recipe('timezone_iii::default')
   end
 
   it "includes the swap recipe" do
@@ -52,6 +50,13 @@ describe 'ingenerator-base::default' do
 
     it 'defaults the node environment to be production' do
       expect(chef_run.node['ingenerator']['node_environment']).to eq(:production)
+    end
+  end
+
+  context 'with custom configuration' do
+    it 'throws if the legacy `tz` attribute is set' do
+      chef_runner.node.default['tz'] = 'Europe/London'
+      expect { chef_run }.to raise_error Ingenerator::Helpers::Attributes::LegacyAttributeDefinitionError
     end
   end
 

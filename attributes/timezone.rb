@@ -18,4 +18,4 @@
 # limitations under the License.
 #
 
-default['tz'] = 'Etc/UTC'
+default['timezone_iii']['timezone'] = 'Etc/UTC'
