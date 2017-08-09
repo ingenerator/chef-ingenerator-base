@@ -5,7 +5,7 @@ license 'Apache-2.0'
 chef_version '>=12.18.31'
 description 'Basic, common, provisioning of all our instances'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '0.6.0'
+version '0.7.0'
 issues_url 'https://github.com/ingenerator/chef-ingenerator-base/issues'
 source_url 'https://github.com/ingenerator/chef-ingenerator-base'
 
